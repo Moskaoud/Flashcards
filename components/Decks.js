@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
-import { getDecks } from '../utils/api'
-import { receiveDecks } from '../actions'
 import { handleInitialData } from '../actions/index'
 
 const Item = ({ title, cards, navigation }) => (
@@ -50,7 +48,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
-
     },
     item: {
         backgroundColor: '#f9c2ff',
@@ -60,11 +57,11 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontSize: 32,
+        fontSize: 18,
 
     },
     cards: {
-        fontSize: 20,
+        fontSize: 15,
 
     },
 });

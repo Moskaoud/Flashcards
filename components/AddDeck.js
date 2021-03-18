@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput, StyleSheet } from 'react-native'
-import {addDeck} from '../actions/index'
+import { Text, View, Button, TextInput, StyleSheet, StatusBar } from 'react-native'
+import { addDeck } from '../actions/index'
 import { connect } from 'react-redux'
 
 export class AddDeck extends Component {
@@ -14,19 +14,25 @@ export class AddDeck extends Component {
     }
     handleSubmit = () => {
         let { text } = this.state
-        let {navigation} = this.props
+        let { navigation } = this.props
         this.props.dispatch(addDeck(text))
-        
+
         //navigate to deck detail, , { title: text ,cards:0}
-        navigation.navigate('DeckDetails', { title: text ,cards:0})
+        navigation.navigate('DeckDetails', { title: text, cards: 0 })
+
+        this.textInput.clear()
     }
+
     render() {
-        let { value } = this.state.text
+
         return (
             <View style={styles.container}>
-                <Text style={{ fontSize: 30 }}> What is the title of your new deck? </Text>
+                <Text style={styles.text}> What is the title of your new deck? </Text>
 
-                <TextInput style={{ margin: 30, borderWidth: 1 }}
+                <TextInput
+                    style={styles.textInput}
+                    ref={input => { this.textInput = input }}
+                    autoFocus={true}
                     onChangeText={(text) => this.setState({ text })} />
                 <Button title="Create Deck" onPress={() => this.handleSubmit()} />
             </View>
@@ -39,7 +45,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 30
+        margin: 30,
+        fontWeight: "bold"        
+    }, text: {
+        fontSize: 18
+    }, textInput: {
+        margin: 30, borderWidth: 1
     }
 });
 
