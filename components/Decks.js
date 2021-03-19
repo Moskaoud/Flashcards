@@ -47,10 +47,11 @@ export class Decks extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'stretch',
         marginTop: StatusBar.currentHeight || 0,
     },
     item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: '#2196f3',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
@@ -58,11 +59,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-
+        color: '#ffffff'
     },
     cards: {
         fontSize: 15,
-
+        color: '#ffffff'
     },
 });
 

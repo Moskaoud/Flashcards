@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { deleteDeck } from '../actions/index'
-import { Card } from 'react-native-elements';
+import { Card } from 'react-native-elements'
+import darkColors from 'react-native-elements/dist/config/colorsDark'
 
 export class DeckDetails extends Component {
 
@@ -31,17 +32,21 @@ export class DeckDetails extends Component {
         return (
 
             <View style={styles.container}>
-                <View style={{ margin: 30 }}>
+                <View >
                     <Card style={styles.item}>
-                        <Text style={styles.title}> {title} </Text>
-                        <Text style={styles.cards}> {cards.length} cards</Text>
+                        <Card.Title style={styles.title}> {title} </Card.Title>
+                        <Card.FeaturedSubtitle style={styles.cards}> {cards.length} cards</Card.FeaturedSubtitle>
                     </Card>
                 </View>
-                <Button title="Add Card" onPress={() => navigation.navigate('AddCard', { title: title })} />
-                <View style={{ margin: 30 }}>
+                <View style={styles.item}>
+                    <Button title="Add Card" onPress={() => navigation.navigate('AddCard', { title: title })} />
+                </View>
+                <View  style={styles.item}>
                     <Button title="Start Quiz" onPress={() => this.handleStart(navigation, cards)} />
                 </View>
-                <Button title="Delete Deck" onPress={() => this.handleDelete(navigation, title)} />
+                <View style={styles.item}>
+                    <Button title="Delete Deck" onPress={() => this.handleDelete(navigation, title)} />
+                </View>
 
 
             </View>
@@ -55,15 +60,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
         fontSize: 25,
+        margin: 20
     },
     item: {
-        backgroundColor: '#f9c2ff',
         padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
 
     },
     title: {
@@ -72,7 +74,10 @@ const styles = StyleSheet.create({
     },
     cards: {
         fontSize: 15,
-
+        color: darkColors,
+        justifyContent: 'center',
+        alignItems:'center',
+        alignContent:'center',
     }
 });
 

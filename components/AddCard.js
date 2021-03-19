@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Text } from 'react-native'
 import { View, Button, TextInput, StyleSheet } from 'react-native'
+import { Card } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 
@@ -25,13 +27,19 @@ export class AddCard extends Component {
 
         return (
             <View style={styles.container}>
-
-                <TextInput style={styles.textIn}   placeholder="Question"
-                    onChangeText={(text) => this.setState({ question: text })} />
-
-                <TextInput style={styles.textIn}   placeholder="Answer"
-                    onChangeText={(text) => this.setState({ answer: text })} />
-                <Button title="Submit" onPress={() => this.handleSubmit(deckTitle)} />
+                <Card >
+                    <Card.Title>Add Question</Card.Title>
+                    <TextInput placeholder="Question" style={styles.textIn}
+                        onChangeText={(text) => this.setState({ question: text })} />
+                </Card>
+                <Card>
+                    <Card.Title>Add Answer</Card.Title>
+                    <TextInput placeholder="Answer" style={styles.textIn}
+                        onChangeText={(text) => this.setState({ answer: text })} />
+                </Card>
+                <View style={styles.btn}>
+                    <Button title="Submit" onPress={() => this.handleSubmit(deckTitle)} />
+                </View>
             </View>
         )
     }
@@ -40,10 +48,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
-        margin: 30
-    },textIn:{ margin: 30, borderWidth: 1 }
+        margin: 30,
+        padding: 20
+    }, 
+    textIn: { borderWidth: 1 }
+    ,btn:{
+        margin: 10
+    }
 });
 
 export default connect()(AddCard)
