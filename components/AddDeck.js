@@ -17,14 +17,13 @@ export class AddDeck extends Component {
         let { navigation } = this.props
         this.props.dispatch(addDeck(text))
 
-        //navigate to deck detail, , { title: text ,cards:0}
-        navigation.navigate('DeckDetails', { title: text, cards: 0 })
+        text.trim() !== '' && navigation.navigate('DeckDetails', { title: text, cards: 0 })
 
         this.textInput.clear()
     }
 
     render() {
-
+        let iText = this.state.text
         return (
             <View style={styles.container}>
                 <Text style={styles.text}> What is the title of your new deck? </Text>
@@ -34,7 +33,11 @@ export class AddDeck extends Component {
                     ref={input => { this.textInput = input }}
                     autoFocus={true}
                     onChangeText={(text) => this.setState({ text })} />
-                <Button title="Create Deck" onPress={() => this.handleSubmit()} />
+
+                {iText.trim() === '' && <Text style={{ color: "red" }}>Deck title is Required</Text>}
+                <View style={{ margin: 30 }}>
+                    <Button  title="Create Deck" onPress={() => this.handleSubmit()} />
+                </View>
             </View>
         )
     }
@@ -46,11 +49,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 30,
-        fontWeight: "bold"        
+        fontWeight: "bold"
     }, text: {
         fontSize: 18
     }, textInput: {
-        margin: 30, borderWidth: 1
+        margin: 30,
+        marginBottom: 0,
+        borderWidth: 1
     }
 });
 

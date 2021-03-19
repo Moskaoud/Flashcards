@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { deleteDeck } from '../actions/index'
+import { Card } from 'react-native-elements';
 
 export class DeckDetails extends Component {
 
@@ -10,8 +11,8 @@ export class DeckDetails extends Component {
         console.log('CARDS', cards)
         if (cards.length == 0) {
             navigation.navigate('NoCards')
-        }else{
-            navigation.navigate('Quiz',{cards})
+        } else {
+            navigation.navigate('Quiz', { cards })
         }
     }
     handleDelete = (navigation, title) => {
@@ -28,12 +29,20 @@ export class DeckDetails extends Component {
 
 
         return (
+
             <View style={styles.container}>
-                <Text> {title} </Text>
-                <Text> {cards.length} cards</Text>
+                <View style={{ margin: 30 }}>
+                    <Card style={styles.item}>
+                        <Text style={styles.title}> {title} </Text>
+                        <Text style={styles.cards}> {cards.length} cards</Text>
+                    </Card>
+                </View>
                 <Button title="Add Card" onPress={() => navigation.navigate('AddCard', { title: title })} />
-                <Button title="Start Quiz" onPress={() => this.handleStart(navigation, cards)} />
+                <View style={{ margin: 30 }}>
+                    <Button title="Start Quiz" onPress={() => this.handleStart(navigation, cards)} />
+                </View>
                 <Button title="Delete Deck" onPress={() => this.handleDelete(navigation, title)} />
+
 
             </View>
 
@@ -48,7 +57,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 25
+        fontSize: 25,
+    },
+    item: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+
+    },
+    title: {
+        fontSize: 18,
+
+    },
+    cards: {
+        fontSize: 15,
+
     }
 });
 
