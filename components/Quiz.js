@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, Button, StyleSheet, TouchableOpacity, Platform, ScrollView } from 'react-native'
 import { Badge } from 'react-native-elements'
 import { connect } from 'react-redux'
 
@@ -22,7 +22,7 @@ export class Quiz extends Component {
         let QuizQuestions = ({ q, a, i }) => {
 
             return (
-                <View style={styles.container}>
+                <ScrollView style={styles.container}>
                     {/* <Text > {i} / {cards.length}</Text> */}
                     <Badge value={i + 1 + ' / ' + cards.length} status="primary" />
                     <Text style={styles.container}> {q}</Text>
@@ -44,13 +44,13 @@ export class Quiz extends Component {
                         onPress={() => this.handlePress('incorrect')} >
                         <Text > Incorrect </Text>
                     </TouchableOpacity>
-                </View>
+                </ScrollView>
             )
         }
         let { score } = this.state
         return (
 
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 {cards.map((c, i) => {
                     //question, answer, index
                     return <QuizQuestions q={c.question} a={c.answer} i={i} key={i} />
@@ -72,7 +72,7 @@ export class Quiz extends Component {
                         <Button style={styles.container}
                             title="Back to Deck" onPress={() => navigation.navigate('Decks')} /></View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
