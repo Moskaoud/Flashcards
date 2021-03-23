@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { deleteDeck } from '../actions/index'
 import { Card } from 'react-native-elements'
-import darkColors from 'react-native-elements/dist/config/colorsDark'
 
 export class DeckDetails extends Component {
 
 
     handleStart = (navigation, cards) => {
-        console.log('CARDS', cards)
+
         if (cards.length == 0) {
             navigation.navigate('NoCards')
         } else {
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     },
     cards: {
         fontSize: 15,
-        color: darkColors,
+        color: '#123456',
         justifyContent: 'center',
         alignItems:'center',
         alignContent:'center',

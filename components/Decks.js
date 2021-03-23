@@ -21,9 +21,6 @@ export class Decks extends Component {
             .then(() => this.setState(() => ({ ready: true })))
 
     }
-    handlePress = () => {
-
-    }
     render() {
         let { decks, navigation } = this.props
         let DATA = Object.keys(decks).map(d => decks[d])
@@ -31,7 +28,6 @@ export class Decks extends Component {
         const renderItem = ({ item }) => (
             <Item title={item.title} cards={item.questions.length} navigation={navigation} />
         );
-
 
         return (
             <SafeAreaView style={styles.container}>
@@ -65,6 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#ffffff'
     },
+    
 });
 
 function mapStateToProps(decks) {
